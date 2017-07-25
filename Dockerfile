@@ -1,7 +1,7 @@
 FROM haproxy:1.7
 
 ADD start.sh /start.sh
-ADD haproxy.cfg /usr/local/etc/hroxy/haproxy.cfg
+ADD haproxy.cfg /usr/local/etc/haproxy/haproxy.cfg
 
 RUN chmod +x /start.sh 
 
