@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NODELIST=($(cat /etc/nodes)
+NODELIST=($(cat /etc/nodes))
 
 sed '/^.*server.*:3306.*$/d' /usr/local/etc/haproxy/haproxy.cfg | sed '/^$/d' >> /haproxy.cfg
 cp /haproxy.cfg /usr/local/etc/haproxy/haproxy.cfg
