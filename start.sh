@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NODELIST=$@
+NODELIST=($(cat /etc/nodes)
 
 sed '/^.*server.*:3306.*$/d' /usr/local/etc/haproxy/haproxy.cfg | sed '/^$/d' >> /haproxy.cfg
 cp /haproxy.cfg /usr/local/etc/haproxy/haproxy.cfg
@@ -11,4 +11,4 @@ for i in ${#RESULT[@]}; do
   echo "    server ${NAME[-1]} ${PAIR[-1]}:3306" >> /usr/local/etc/haproxy/haproxy.cfg
 done
 
-/docker-entrypoint.sh
+/docker-entrypoint.sh "$@"
