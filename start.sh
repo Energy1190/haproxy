@@ -1,8 +1,8 @@
 #!/bin/bash
 
-NODELIST=($(cat /etc/nodes))
+IFS=$'\r\n' GLOBIGNORE='*' command eval  'NODELIST=($(cat /etc/nodes))'
 
-sed '/^.*server.*:3306.*$/d' /usr/local/etc/haproxy/haproxy.cfg | sed '/^$/d' >> /haproxy.cfg
+sed '/^.*server.*:3306.*$/d' /usr/local/etc/haproxy/haproxy.cfg | sed '/^$/d' > /haproxy.cfg
 cp /haproxy.cfg /usr/local/etc/haproxy/haproxy.cfg
 IFS=' ' read -ra RESULT <<< ${NODELIST} 
 for i in ${#RESULT[@]}; do
