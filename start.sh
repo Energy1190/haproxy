@@ -9,7 +9,7 @@ for (( i=0; i<${#NODELIST[@]}; i++ )); do
   IFS='+' read -ra PAIR <<< ${NODELIST[$i]}
   IFS='/' read -ra NAME <<< ${PAIR[0]}
   N=${NAME[-1]}
-  P=${$PAIR[-1]}
+  P=${PAIR[-1]}
   sed 's/balance roundrobin/balance roundrobin\n    server $N $P:3306/g' /usr/local/etc/haproxy/haproxy.cfg > /haproxy.cfg
   cp /haproxy.cfg /usr/local/etc/haproxy/haproxy.cfg
   echo "    server ${N} ${P}:3306" >> /usr/local/etc/haproxy/haproxy.cfg
