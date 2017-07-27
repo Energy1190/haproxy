@@ -12,7 +12,6 @@ for (( i=0; i<${#NODELIST[@]}; i++ )); do
   P=${PAIR[-1]}
   sed "s/balance roundrobin/balance roundrobin\n    server $N $P:3306/g" /usr/local/etc/haproxy/haproxy.cfg > /haproxy.cfg
   cp /haproxy.cfg /usr/local/etc/haproxy/haproxy.cfg
-  echo "    server ${N} ${P}:3306" >> /usr/local/etc/haproxy/haproxy.cfg
 done
 
 /docker-entrypoint.sh "$@"
